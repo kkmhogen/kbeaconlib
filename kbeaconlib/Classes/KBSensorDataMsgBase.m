@@ -10,24 +10,24 @@
 
 @implementation KBSensorDataMsgBase
 
--(int) getSensorDataType
+-(NSInteger) getSensorDataType
 {
     return KBSensorDataTypeInvalid;
 }
 
--(NSData*) makeReadSensorDataReq:(long)nReadRcdNo order:(int)nReadOrder
-                      readNumber:( int) nMaxRecordNum
+-(NSData*) makeReadSensorDataReq:(NSUInteger)nReadRcdNo order:(NSUInteger)nReadOrder
+                      readNumber:( NSUInteger) nMaxRecordNum
 {
     return nil;
 }
 
--(void) parseSensorDataResponse:(KBeacon*)beacon dataPtr:(int)dataPtr
+-(void) parseSensorDataResponse:(KBeacon*)beacon dataPtr:(NSUInteger)dataPtr
   response:(NSData*)sensorDataRsp
 {
     return;
 }
 
--(void) parseSensorInfoResponse:(KBeacon*) beacon dataPtr:(int)dataPtr
+-(void) parseSensorInfoResponse:(KBeacon*) beacon dataPtr:(NSUInteger)dataPtr
                        response:(NSData*)sensorInfoRsp
 {
     return;
@@ -62,34 +62,34 @@
     }];
 }
 
--(int)parseSensorDataResponse:(NSData*)data
+-(NSUInteger)parseSensorDataResponse:(NSData*)data
 {
     Byte byData[3];
     if (data == nil || data.length < 3)
     {
-        return -1;
+        return INVALID_DATA_RECORD_POS;
     }
     
     [data getBytes:byData length:3];
     if (byData[0] != MSG_READ_SENSOR_DATA_TAG)
     {
-        return -1;
+        return INVALID_DATA_RECORD_POS;
     }
     
     //data length
     unsigned short nDataLen = htons(*(unsigned short*)&byData[1]);
     if (nDataLen != data.length - 3)
     {
-        return -1;
+        return INVALID_DATA_RECORD_POS;
     }
     
     return nDataLen;
 }
 
 -(void)readSensorRecord:(KBeacon*)beacon
-              recordNum:(long)nReadRcdNo
-                  order:(int) nReadOrder
-           maxRecordNum:(int)nMaxRecordNum
+              recordNum:(NSUInteger)nReadRcdNo
+                  order:(NSUInteger) nReadOrder
+           maxRecordNum:(NSUInteger)nMaxRecordNum
                callback:(onSensorDataCommandCallback) readCallback
 {
 
@@ -125,7 +125,7 @@
         if (bConfigSuccess)
         {
             //tag
-            if ([self parseSensorDataResponse:data] == -1)
+            if ([self parseSensorDataResponse:data] == INVALID_DATA_RECORD_POS)
             {
                 NSDictionary *userInfo1 = [NSDictionary dictionaryWithObjectsAndKeys:@"read data fail", NSLocalizedDescriptionKey, @"read data is null", NSLocalizedFailureReasonErrorKey, @"",NSLocalizedRecoverySuggestionErrorKey,nil];
                 NSError* error = [[NSError alloc] initWithDomain:NSCocoaErrorDomain code:KBEvtCfgFailed userInfo:userInfo1];

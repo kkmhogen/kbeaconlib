@@ -181,4 +181,22 @@
     return strUserUUID;
 }
 
++(float)signedBytes2Float:(Byte)byte1 second:(Byte)byte2
+{
+    int nBytePointLeft = (char)byte1;
+    float nBytePointRight = ((float)(byte2 & 0xFF)) / 256;
+    float fResult = 0.0;
+    if (nBytePointLeft < 0)
+    {
+        fResult = nBytePointLeft - nBytePointRight;
+    }
+    else
+    {
+        fResult = nBytePointLeft + nBytePointRight;
+    }
+    
+    return fResult;
+}
+
+
 @end

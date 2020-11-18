@@ -393,7 +393,7 @@
     {
         for (int i = 1; i < nsBeaconTypeArray.count; i++)
         {
-            strBeaconString = [strBeaconString stringByAppendingFormat:@";%@", nsBeaconTypeArray[i]];
+            strBeaconString = [strBeaconString stringByAppendingFormat:@"|%@", nsBeaconTypeArray[i]];
         }
     }
     
@@ -459,6 +459,23 @@
     return (([self.basicCapibility intValue] & 0x8) > 0);
 }
 
+
+-(NSArray*) getSupportedSensorArray
+{
+    NSMutableArray* mutableArray = [[NSMutableArray alloc]init];
+    
+    if ([self isSupportAccSensor])
+    {
+        [mutableArray addObject:[NSNumber numberWithInt:KB_CAPIBILITY_ACC]];
+    }
+    
+    if ([self isSupportAccSensor])
+    {
+        [mutableArray addObject:[NSNumber numberWithInt:KB_CAPIBILITY_HUMIDITY]];
+    }
+
+    return mutableArray;
+}
 
 /*
 +(NSArray*) getBeaconStringByType:(NSNumber*)beaconCfgType

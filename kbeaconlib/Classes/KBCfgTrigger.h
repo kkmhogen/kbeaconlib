@@ -6,7 +6,7 @@
 //  Copyright © 2020 hogen. All rights reserved.
 //
 
-#import "KBCfgBase.h"
+#import <KBCfgBase.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +15,8 @@ typedef NS_ENUM(NSInteger, KBTriggerType)
 {
     KBTriggerTypeMotion = 0x1,   //motion trigger
     KBTriggerTypeButton = 0x2,    //button click trigger
-    KBTriggerTypeNearby = 0x4  
+    KBTriggerTypeNearby = 0x4,
+    KBTriggerTypeHumidity = 0x8,   //himidity trigger
 };
 
 //trigger action option
@@ -25,7 +26,8 @@ typedef NS_ENUM(NSInteger, KBTriggerAction)
     KBTriggerActionAdv = 0x1,     //enable advertisment when trigger event happened
     KBTriggerActionAlert = 0x2,   //enable alert when trigger event happened
     KBTriggerActionRecord = 0x4,
-    KBTriggerActionVirbration = 0x8
+    KBTriggerActionVirbration = 0x8,
+    KBTriggerActionRptApp = 0x10,
 };
 
 //button trigger para

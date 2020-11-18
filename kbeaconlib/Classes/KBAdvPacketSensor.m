@@ -62,11 +62,10 @@
             return NO;
         }
         
-        int nTempPointLeft = (char)pSrvData[nSrvIndex++];
-        float nTempPointRight = ((float)pSrvData[nSrvIndex++]) / 256;
-        float nTempRsult = nTempPointLeft + nTempPointRight;
-        NSString* strTemp = [NSString stringWithFormat:@"%.2f",nTempRsult];
-        _temperature = [NSNumber numberWithFloat:[strTemp floatValue]];
+        Byte tempHeigh = pSrvData[nSrvIndex++];
+        Byte tempLow = pSrvData[nSrvIndex++];
+        float fTempRsult =[KBUtility signedBytes2Float:tempHeigh second:tempLow];
+        _temperature = [NSNumber numberWithFloat:fTempRsult];
     }
     
     if (bySensorMask & SENSOR_MASK_HUME)
@@ -76,10 +75,10 @@
             return NO;
         }
         
-        int nHumPointLeft = (Byte)(pSrvData[nSrvIndex++] & 0xFF);
-        int nHumPointRight = (pSrvData[nSrvIndex++] & 0xFF);
-        NSString* strTemp = [NSString stringWithFormat:@"%d.%d", nHumPointLeft, nHumPointRight];
-        _humidity = [NSNumber numberWithFloat:[strTemp floatValue]];
+        Byte humHeigh = pSrvData[nSrvIndex++];
+        Byte humLow = pSrvData[nSrvIndex++];
+        float fHumidityResult =[KBUtility signedBytes2Float:humHeigh second:humLow];
+        _humidity = [NSNumber numberWithFloat:fHumidityResult];
     }
     
     if (bySensorMask & SENSOR_MASK_ACC_AIX)

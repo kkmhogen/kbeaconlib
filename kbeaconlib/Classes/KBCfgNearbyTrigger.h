@@ -6,16 +6,15 @@
 //  Copyright © 2020 hogen. All rights reserved.
 //
 
-#import "KBCfgTrigger.h"
-#import "KBCfgSleepTime.h"
+#import <KBCfgTrigger.h>
+#import <KBCfgSleepTime.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
 
 #define String LOG_TAG @"KBCfgNearbyTrigger"
 #define ALM_DISTANCE_NEAY 13
 #define ALM_DISTANCE_MIDDLE 20
-#define ALM_DISTANCE_FARWAY 40
+#define ALM_DISTANCE_FARWAY 35
 
 #define JSON_FIELD_NEARBY_SCAN_INTERVAL @"nSTvl"
 #define JSON_FIELD_NEARBY_SCAN_WINDOW @"nSWin"

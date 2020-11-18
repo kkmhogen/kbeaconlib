@@ -6,7 +6,7 @@
 //  Copyright © 2019 kkm. All rights reserved.
 //
 
-#import "KBCfgBase.h"
+#import <KBCfgBase.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

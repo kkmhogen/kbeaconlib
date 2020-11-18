@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBCfgBase.h"
+#import <KBCfgBase.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

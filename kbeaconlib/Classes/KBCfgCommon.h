@@ -6,7 +6,7 @@
 //  Copyright © 2019 hogen. All rights reserved.
 //
 
-#import "KBCfgBase.h"
+#import <KBCfgBase.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -144,6 +144,9 @@ typedef NS_ENUM(NSInteger, KBAdvFlags)
 
 //is support humidity sensor
 -(BOOL) isSupportHumiditySensor;
+
+//get supported sesnor
+-(NSArray*) getSupportedSensorArray;
 
 @end
 

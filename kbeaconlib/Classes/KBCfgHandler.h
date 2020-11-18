@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KBCfgBase.h"
-#import "KBCfgCommon.h"
-#import "KBCfgIBeacon.h"
-#import "KBCfgEddyURL.h"
-#import "KBCfgEddyUID.h"
-#import "KBCfgSensor.h"
-#import "KBCfgTrigger.h"
+#import <KBCfgBase.h>
+#import <KBCfgCommon.h>
+#import <KBCfgIBeacon.h>
+#import <KBCfgEddyURL.h>
+#import <KBCfgEddyUID.h>
+#import <KBCfgSensor.h>
+#import <KBCfgTrigger.h>
 
 
 NS_ASSUME_NONNULL_BEGIN

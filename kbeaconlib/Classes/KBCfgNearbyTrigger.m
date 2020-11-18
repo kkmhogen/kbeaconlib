@@ -229,7 +229,7 @@
     NSNumber* nTempValue = nil;
 
     nTempValue = [dicts objectForKey:JSON_FIELD_NEARBY_SCAN_INTERVAL];
-    if (_nbScanInterval != nil)
+    if (nTempValue != nil)
     {
         _nbScanInterval = nTempValue;
         nUpdateParaNum++;

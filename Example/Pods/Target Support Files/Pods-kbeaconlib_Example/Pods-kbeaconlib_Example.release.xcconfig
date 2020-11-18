@@ -1,8 +1,11 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/kbeaconlib"
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+EXCLUDED_ARCHS[sdk=iphonesimulator*] = arm64
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking" "${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh" "${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation" "${PODS_CONFIGURATION_BUILD_DIR}/iOSDFULibrary" "${PODS_CONFIGURATION_BUILD_DIR}/kbeaconlib"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/kbeaconlib/kbeaconlib.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking/AFNetworking.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh/MJRefresh.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/iOSDFULibrary/iOSDFULibrary.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/kbeaconlib/kbeaconlib.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_LDFLAGS = $(inherited) -framework "kbeaconlib"
+OTHER_LDFLAGS = $(inherited) -framework "AFNetworking" -framework "CoreGraphics" -framework "MJRefresh" -framework "MobileCoreServices" -framework "Security" -framework "SystemConfiguration" -framework "ZIPFoundation" -framework "iOSDFULibrary" -framework "kbeaconlib"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

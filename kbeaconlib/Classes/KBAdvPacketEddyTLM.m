@@ -37,11 +37,10 @@
     _batteryLevel = [NSNumber numberWithInt:nBatteryLevel];
     
     //temputure
-    int nTempPointLeft = (char)pSrvData[nSrvIndex++];
-    float nTempPointRight = ((float)pSrvData[nSrvIndex++]) / 256;
-    float nTempRsult = nTempPointLeft + nTempPointRight;
-    NSString* strTemp = [NSString stringWithFormat:@"%.2f",nTempRsult];
-    _temperature = [NSNumber numberWithFloat:[strTemp floatValue]];
+    Byte tempHeigh = pSrvData[nSrvIndex++];
+    Byte tempLow = pSrvData[nSrvIndex++];
+    float fTempRsult =[KBUtility signedBytes2Float:tempHeigh second:tempLow];
+    _temperature = [NSNumber numberWithFloat:fTempRsult];
     
     //adv count
     int nAdvCount = (pSrvData[nSrvIndex++] & 0xFF);

@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 #define KB_CFG_SERVICES_UUID [CBUUID UUIDWithString:@"0000FEA0-0000-1000-8000-00805f9b34fb"]
 #define KB_WRITE_CHAR_UUID [CBUUID UUIDWithString:@"0000FEA1-0000-1000-8000-00805f9b34fb"]
 #define KB_NTF_CHAR_UUID [CBUUID UUIDWithString:@"0000FEA2-0000-1000-8000-00805f9b34fb"]
+#define KB_IND_CHAR_UUID [CBUUID UUIDWithString:@"0000FEA3-0000-1000-8000-00805f9b34fb"]
 
 
 
@@ -71,6 +72,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString*)jsonData2StringWithoutSpaceReturn:(NSData*)jsonData;
 
 +(NSString*) FormatHexUUID2User:(NSString*)strUUID;
+
++(float)signedBytes2Float:(Byte)byte1 second:(Byte)byte2;
 
 @end
 

@@ -22,16 +22,16 @@
     long utcSecondsOffset;
 }
 
--(int)getSensorDataType
+-(NSInteger)getSensorDataType
 {
     return KBSensorDataTypeProxmity;
 }
 
--(NSData*) makeReadSensorDataReq:(long)nReadRcdNo order:(int)nReadOrder
-readNumber:( int) nMaxRecordNum
+-(NSData*) makeReadSensorDataReq:(NSUInteger)nReadRcdNo order:(NSUInteger)nReadOrder
+readNumber:( NSUInteger) nMaxRecordNum
 {
     Byte byMsgReq[7];
-    int nIndex = 0;
+    NSUInteger nIndex = 0;
 
     //read pos
     byMsgReq[nIndex++] = (Byte)((nReadRcdNo >> 24) & 0xFF);
@@ -51,7 +51,7 @@ readNumber:( int) nMaxRecordNum
 }
 
 
--(void) parseSensorInfoResponse:(KBeacon*) beacon dataPtr:(int)dataPtr
+-(void) parseSensorInfoResponse:(KBeacon*) beacon dataPtr:(NSUInteger)dataPtr
 response:(NSData*)sensorInfoRsp
 {
     if (sensorInfoRsp.length - dataPtr < 6)
@@ -69,13 +69,13 @@ response:(NSData*)sensorInfoRsp
     }
 
     const Byte* pSensorInfoReq = [sensorInfoRsp bytes];
-    int nIndex = dataPtr;
+    NSUInteger nIndex = dataPtr;
     
     //get record number
     KBProximityInfoRsp* infoRsp = [[KBProximityInfoRsp alloc]init];
-    int nRecordNum = htons(*(unsigned short*)&pSensorInfoReq[nIndex]);
+    NSUInteger nRecordNum = htons(*(unsigned short*)&pSensorInfoReq[nIndex]);
     nIndex += 2;
-    infoRsp.readInfoRecordNumber = [NSNumber numberWithInt:nRecordNum];
+    infoRsp.readInfoRecordNumber = [NSNumber numberWithInteger:nRecordNum];
     
     //get utc count
     long nUtcSeconds = htonl(*(long*)&pSensorInfoReq[nIndex]);
@@ -93,12 +93,12 @@ response:(NSData*)sensorInfoRsp
     return;
 }
 
--(void) parseSensorDataResponse:(KBeacon*)beacon dataPtr:(int)dataPtr
+-(void) parseSensorDataResponse:(KBeacon*)beacon dataPtr:(NSUInteger)dataPtr
   response:(NSData*)sensorDataRsp
 {
     //sensor data type
     const Byte* pRspData = [sensorDataRsp bytes];
-    int nReadIndex = dataPtr;
+    NSUInteger nReadIndex = dataPtr;
     
     //read data tag
     if (pRspData[nReadIndex] != KBSensorDataTypeProxmity)
@@ -117,7 +117,7 @@ response:(NSData*)sensorInfoRsp
     nReadIndex++;
 
     //read next data pos
-    unsigned int nNextPos = htonl(*(unsigned int*)&pRspData[nReadIndex]);
+    NSUInteger nNextPos = htonl(*(unsigned int*)&pRspData[nReadIndex]);
     nReadIndex += 4;
 
     //check payload length valid
@@ -138,14 +138,14 @@ response:(NSData*)sensorInfoRsp
 
     KBProximityDataRsp* pDataRsp = [[KBProximityDataRsp alloc]init];
     pDataRsp.readDataList = [[NSMutableArray alloc]init];
-    pDataRsp.readDataNextNum = [NSNumber numberWithInt:nNextPos];
+    pDataRsp.readDataNextNum = [NSNumber numberWithInteger:nNextPos];
     
     //read record
-    int nRecordStartPtr = nReadIndex;
-    int nTotalRecordLen = (int)nPayLoad / 12;
-    for (int i = 0; i < nTotalRecordLen; i++)
+    NSUInteger nRecordStartPtr = nReadIndex;
+    NSUInteger nTotalRecordLen = (NSUInteger)nPayLoad / 12;
+    for (NSUInteger i = 0; i < nTotalRecordLen; i++)
     {
-        int nRecordPtr = nRecordStartPtr + i * 12;
+        NSUInteger nRecordPtr = nRecordStartPtr + i * 12;
         KBProximityRecord* record = [[KBProximityRecord alloc]init];
         
         //nearby time
@@ -170,8 +170,12 @@ response:(NSData*)sensorInfoRsp
         }
         
         //utc time
-        long nUtcTime = htonl(*(unsigned int*)&pRspData[nRecordPtr]);
+        NSUInteger nUtcTime = htonl(*(unsigned int*)&pRspData[nRecordPtr]);
         nRecordPtr += 4;
+        if(nUtcTime < MIN_UTC_TIME_SECONDS)
+        {
+            nUtcTime = nUtcTime + utcSecondsOffset;
+        }
         record.utcTime = [NSNumber numberWithLong:nUtcTime];
 
         //major

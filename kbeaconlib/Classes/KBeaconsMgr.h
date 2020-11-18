@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreBluetooth/CBService.h>
-#import "KBUtility.h"
+#import <KBUtility.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

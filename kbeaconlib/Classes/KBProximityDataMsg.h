@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KBSensorDataMsgBase.h"
+#import <KBSensorDataMsgBase.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

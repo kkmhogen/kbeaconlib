@@ -6,7 +6,7 @@
 //  Copyright © 2019 kkm. All rights reserved.
 //
 
-#import "KBAdvPacketBase.h"
+#import <KBAdvPacketBase.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,16 +22,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, readonly) KBAccSensorValue* accSensor;
 
 //temperature about sensor
-@property (assign, readonly) NSNumber* temperature;
+@property (strong, readonly) NSNumber* temperature;
 
 //humidity about sensor
-@property (assign, readonly) NSNumber* humidity;
+@property (strong, readonly) NSNumber* humidity;
 
 //adv packet version
-@property (assign, readonly) NSNumber* version;
+@property (strong, readonly) NSNumber* version;
 
 //battery level, uint is mV
-@property (assign, readonly) NSNumber* batteryLevel;
+@property (strong, readonly) NSNumber* batteryLevel;
 
 -(BOOL) parseAdvPacket:(const NSData*) data;
 

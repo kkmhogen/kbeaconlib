@@ -9,16 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreBluetooth/CBService.h>
-#import "KBAdvPacketBase.h"
-#import "KBAuthHandler.h"
-#import "KBCfgCommon.h"
-#import "KBCfgIBeacon.h"
-#import "KBCfgEddyUID.h"
-#import "KBCfgEddyURL.h"
-#import "KBCfgSensor.h"
-#import "KBException.h"
-#import "KBCfgTrigger.h"
-
+#import <KBAdvPacketBase.h>
+#import <KBAuthHandler.h>
+#import <KBCfgCommon.h>
+#import <KBCfgIBeacon.h>
+#import <KBCfgEddyUID.h>
+#import <KBCfgEddyURL.h>
+#import <KBCfgSensor.h>
+#import <KBException.h>
+#import <KBCfgTrigger.h>
+#import <KBNotifyDataBase.h>
+#import <KBSubscribeNotifyItem.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -151,6 +152,13 @@ typedef void (^onActionComplete)(BOOL bConfigSuccess, NSError* _Nullable error);
 //send commond to device
 -(void) sendCommand:(NSDictionary*) cmdPara callback:(onActionComplete)callback;
 
+//add notify data subscriber
+-(void)subscribeSensorDataNotify:(Class) sensorNtfMsgClass
+                        delegate:(id<KBNotifyDataDelegate>) notifyDataCallback
+                        callback:(onActionComplete)callback;
+
+//check if sensor data subscribed
+-(BOOL)isSensorDataSubscribe:(Class) sensorNtfMsgClass;
 
 /////////////////////////////////////////
 -(void)attach2Device:(CBPeripheral*) peripheral beaconMgr:(KBeaconsMgr*) beaconMgr;
@@ -159,6 +167,7 @@ typedef void (^onActionComplete)(BOOL bConfigSuccess, NSError* _Nullable error);
 
 -(void) handleCentralBLEEvent:(CBPeripheralState)nNewState;
 
+-(BOOL)isSupportSensorDataNotification;
 
 @end
 

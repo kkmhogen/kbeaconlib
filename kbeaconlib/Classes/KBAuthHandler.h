@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KBConnPara.h"
+#import <KBConnPara.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

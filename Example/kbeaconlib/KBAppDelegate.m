@@ -8,6 +8,9 @@
 
 #import "KBAppDelegate.h"
 
+#define App_Bar_Color [UIColor colorWithRed:42/255.0 green:42/255.0 blue:42/255.0 alpha:1.0]
+#define App_Text_Color [UIColor whiteColor]
+
 @implementation KBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

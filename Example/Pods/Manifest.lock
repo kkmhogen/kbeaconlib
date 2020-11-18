@@ -1,16 +1,44 @@
 PODS:
-  - kbeaconlib (0.1.0)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - iOSDFULibrary (4.9.0):
+    - ZIPFoundation (= 0.9.11)
+  - kbeaconlib (1.0.1)
+  - MJRefresh (3.5.0)
+  - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
+  - AFNetworking/NSURLSession (= 3.2.1)
+  - AFNetworking/Reachability (= 3.2.1)
+  - AFNetworking/Security (= 3.2.1)
+  - AFNetworking/Serialization (= 3.2.1)
+  - iOSDFULibrary
   - kbeaconlib (from `../`)
+  - MJRefresh
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - iOSDFULibrary
+    - MJRefresh
+    - ZIPFoundation
 
 EXTERNAL SOURCES:
   kbeaconlib:
     :path: "../"
 
 SPEC CHECKSUMS:
-  kbeaconlib: 9e2a68500de83c25a5ba5bcd5e7a7d5a7fc403bd
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  iOSDFULibrary: 4dc9e1b6ef296c5fbcdff8abca77b54397f10777
+  kbeaconlib: 4654d599d54ccf4654a8028387b1f459bfd08417
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: f35238f7d02e8ceb2e40794332e780a09517114d
+PODFILE CHECKSUM: 5b6c6d5d1e8768b182733aace14ae19e36bc777b
 
 COCOAPODS: 1.9.2

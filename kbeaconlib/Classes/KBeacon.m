@@ -15,6 +15,8 @@
 #import "KBException.h"
 #import "KBCfgTrigger.h"
 #import "KBCfgNearbyTrigger.h"
+#import "KBSubscribeNotifyItem.h"
+#import "KBCfgHumidityTrigger.h"
 
 
 #define MAX_CONNING_TIME_SEC 15
@@ -26,6 +28,7 @@
 #define ACTION_IDLE 0
 #define ACTION_USR_READ_CFG 4
 #define ACTION_READ_SENSOR 5
+#define ACTION_ENABLE_NTF  6
 
 //data type
 #define DATA_TYPE_AUTH 0x1
@@ -109,11 +112,17 @@
     onActionComplete mWriteCmdCallback;
     
     onReadSensorComplete mReadSensorCallback;
+    
+    onActionComplete mEnableSubscribeNotifyCallback;
 
     NSMutableData* mReceiveData;
     
     NSArray<KBCfgBase*>* mToBeCfgData;
-    
+        
+    NSMutableDictionary* notifyData2ClassMap;
+
+    KBSubscribeNotifyItem* mToAddedSubscribeInstance;
+
     int mCloseReason;
 }
 
@@ -127,6 +136,8 @@
     
     mAuthHandler = [[KBAuthHandler alloc] init];
     mAuthHandler.delegate = self;
+    
+    notifyData2ClassMap = [[NSMutableDictionary alloc]init];
     
     return self;
 }
@@ -235,6 +246,160 @@
     _rssi = rssi;
     
     return [mAdvPacketMgr parseAdvPacket:advData rssi:rssi];
+}
+
+-(BOOL)isSensorDataSubscribe:(Class) sensorNtfMsgClass
+{
+
+    KBNotifyDataBase * notifyData = [[sensorNtfMsgClass alloc]init];
+    KBSubscribeNotifyItem* notifyInstance = [notifyData2ClassMap objectForKey:[notifyData getSensorDataType]];
+
+    return (notifyInstance != nil);
+}
+
+-(void)subscribeSensorDataNotify:(Class) sensorNtfMsgClass
+                        delegate:(id<KBNotifyDataDelegate>) notifyDataCallback
+                        callback:(onActionComplete)callback
+{
+    if (![self isSupportSensorDataNotification])
+    {
+        NSDictionary *userInfo1 = [NSDictionary dictionaryWithObjectsAndKeys:@"device not support subscription", NSLocalizedDescriptionKey, @"device not support subscription", NSLocalizedFailureReasonErrorKey, @"",NSLocalizedRecoverySuggestionErrorKey,nil];
+        NSError* error = [[NSError alloc] initWithDomain:NSCocoaErrorDomain code:KBEvtCfgInputInvalid userInfo:userInfo1];
+        if (callback != nil)
+        {
+            callback(NO, error);
+        }
+        return;
+    }
+
+    KBNotifyDataBase* notifyData = [[sensorNtfMsgClass alloc]init];
+    KBSubscribeNotifyItem* instance = [[KBSubscribeNotifyItem alloc]init];
+    instance.notifyClass = sensorNtfMsgClass;
+    instance.delegate = notifyDataCallback;
+    instance.notifyType = [notifyData getSensorDataType];
+    if (notifyData2ClassMap.count == 0)
+    {
+        if (mActionStatus != ACTION_IDLE)
+        {
+            if (callback != nil) {
+                NSDictionary *userInfo1 = [NSDictionary dictionaryWithObjectsAndKeys:@"device is busy", NSLocalizedDescriptionKey, @"device is busy", NSLocalizedFailureReasonErrorKey, @"",NSLocalizedRecoverySuggestionErrorKey,nil];
+                NSError* error = [[NSError alloc] initWithDomain:NSCocoaErrorDomain code:KBEvtCfgBusy userInfo:userInfo1];
+                callback(NO, error);
+            }
+            return;
+        }
+        
+        if (_state != KBStateConnected)
+        {
+            if (callback != nil) {
+                NSDictionary *userInfo1 = [NSDictionary dictionaryWithObjectsAndKeys:@"device is not in connected", NSLocalizedDescriptionKey, @"device is not in connected", NSLocalizedFailureReasonErrorKey, @"",NSLocalizedRecoverySuggestionErrorKey,nil];
+                NSError* error = [[NSError alloc] initWithDomain:NSCocoaErrorDomain code:KBEvtCfgBusy userInfo:userInfo1];
+                callback(NO, error);
+            }
+            return;
+        }
+
+        //save callback
+        mToAddedSubscribeInstance = instance;
+        mEnableSubscribeNotifyCallback = callback;
+        BOOL bResult = [self startEnableNotification: KB_CFG_SERVICES_UUID charUUID:KB_IND_CHAR_UUID on:YES];
+        if (bResult)
+        {
+            [self startNewAction: ACTION_ENABLE_NTF timeout:3.0];
+        }
+        else
+        {
+            if (callback != nil)
+            {
+                NSDictionary *userInfo1 = [NSDictionary dictionaryWithObjectsAndKeys:@"enable notification failed", NSLocalizedDescriptionKey, @"enable notification failed", NSLocalizedFailureReasonErrorKey, @"",NSLocalizedRecoverySuggestionErrorKey,nil];
+                NSError* error = [[NSError alloc] initWithDomain:NSCocoaErrorDomain code:KBEvtCfgBusy userInfo:userInfo1];
+                callback(NO, error);
+            }
+        }
+    }
+    else
+    {
+        [notifyData2ClassMap setObject:instance forKey:instance.notifyType];
+        if (callback != nil) {
+            callback(YES, nil);
+        }
+    }
+}
+
+-(void)removeSubscribeSensorDataNotify:(Class)sensorNtfMsgClass callback:(onActionComplete) callback
+{
+
+    KBNotifyDataBase* notifyData = [[sensorNtfMsgClass alloc]init];
+    NSNumber* notifyDataType = [notifyData getSensorDataType];
+    if ([notifyData2ClassMap objectForKey: notifyDataType] != nil)
+    {
+        if (callback != nil) {
+            callback(YES, nil);
+        }
+        return;
+    }
+
+    if (notifyData2ClassMap.count == 1)
+    {
+        if (mActionStatus != ACTION_IDLE)
+        {
+            NSDictionary *userInfo1 = [NSDictionary dictionaryWithObjectsAndKeys:@"device is busy", NSLocalizedDescriptionKey, @"device is busy", NSLocalizedFailureReasonErrorKey, @"",NSLocalizedRecoverySuggestionErrorKey,nil];
+            NSError* error = [[NSError alloc] initWithDomain:NSCocoaErrorDomain code:KBEvtCfgBusy userInfo:userInfo1];
+            callback(NO, error);
+            return;
+        }
+        
+        if (_state != KBStateConnected)
+        {
+            if (callback != nil) {
+                NSDictionary *userInfo1 = [NSDictionary dictionaryWithObjectsAndKeys:@"device is not in connected", NSLocalizedDescriptionKey, @"device is not in connected", NSLocalizedFailureReasonErrorKey, @"",NSLocalizedRecoverySuggestionErrorKey,nil];
+                NSError* error = [[NSError alloc] initWithDomain:NSCocoaErrorDomain code:KBEvtCfgBusy userInfo:userInfo1];
+                callback(NO, error);
+            }
+            return;
+        }
+
+        //save callback
+        mToAddedSubscribeInstance = nil;
+        mEnableSubscribeNotifyCallback = callback;
+        if ([self startEnableNotification: KB_CFG_SERVICES_UUID charUUID:KB_IND_CHAR_UUID on:NO])
+        {
+            [self startNewAction:ACTION_ENABLE_NTF timeout:3.0];
+        }
+        
+    } else {
+        [notifyData2ClassMap removeObjectForKey:notifyDataType];
+        if (callback != nil) {
+            callback(YES, nil);
+        }
+    }
+}
+
+-(void) handleBeaconEnableSubscribeComplete
+{
+    [self cancelActionTimer];
+
+    if (mToAddedSubscribeInstance != nil)
+    {
+        [notifyData2ClassMap setObject:mToAddedSubscribeInstance forKey:mToAddedSubscribeInstance.notifyType];
+        mToAddedSubscribeInstance = nil;
+
+        if (mEnableSubscribeNotifyCallback != nil)
+        {
+            onActionComplete tmpAction = mEnableSubscribeNotifyCallback;
+            mEnableSubscribeNotifyCallback = nil;
+            tmpAction(YES, nil);
+        }
+    }
+    else
+    {
+        [notifyData2ClassMap removeAllObjects];
+        if (mEnableSubscribeNotifyCallback != nil) {
+            onActionComplete tmpAction = mEnableSubscribeNotifyCallback;
+            mEnableSubscribeNotifyCallback = nil;
+            tmpAction(YES, nil);
+        }
+    }
 }
 
 -(BOOL) connect:(NSString*)password timeout:(NSUInteger)timeout
@@ -377,6 +542,16 @@
             tempCallback(false, nil, error);
         }
     }
+    else if (mActionStatus == ACTION_ENABLE_NTF)
+    {
+        mActionStatus = ACTION_IDLE;
+        if (mEnableSubscribeNotifyCallback != nil)
+        {
+            onActionComplete tempCallback = mEnableSubscribeNotifyCallback;
+            mEnableSubscribeNotifyCallback = nil;
+            tempCallback(false, error);
+        }
+    }
 }
 
 -(void) disconnect
@@ -517,7 +692,6 @@
     
     return YES;
 }
-
 
 -(void) systemHandleResponse:(CBUUID*)cbUUID data:(Byte*)byRcvNtfValue lenght:(int)sysDataLen
 {
@@ -714,6 +888,10 @@
                     {
                         cfgTrigger = [[KBCfgNearbyTrigger alloc]init];
                     }
+                    else if ([trType intValue] == KBTriggerTypeHumidity)
+                    {
+                        cfgTrigger = [[KBCfgHumidityTrigger alloc]init];
+                    }
                     else{
                         cfgTrigger = [[KBCfgTrigger alloc]init];
                     }
@@ -874,7 +1052,7 @@
     Byte nPduTag = PDU_TAG_START;
     int nMaxTxDataSize = [mAuthHandler.mtuSize intValue] - MSG_PDU_HEAD_LEN;
     int nDataLen = nMaxTxDataSize;
-    if (mByDownloadDatas.length < nMaxTxDataSize)
+    if (mByDownloadDatas.length <= nMaxTxDataSize)
     {
         nPduTag = PDU_TAG_SINGLE;
         nDataLen = (int)mByDownloadDatas.length;
@@ -910,10 +1088,10 @@
     //write data to device
     if (![self startWriteCfgValue:downData])
     {
-        return YES;
+        return NO;
     }
     
-    return NO;
+    return YES;
 }
 
 -(void) configHandleDownCmdAck:(Byte)framType dataType:(Byte)dataType data:(Byte*)data lenght:(int)dataLen
@@ -1067,6 +1245,29 @@
     }
 }
 
+-(void)handleBeaconIndData:(NSData*)data
+{
+    if (data.length <= 1)
+    {
+        return;
+    }
+    
+    const Byte* pNotifyData = [data bytes];
+    int nDataType = pNotifyData[0];
+    KBSubscribeNotifyItem* sensorInstance = [notifyData2ClassMap objectForKey:[NSNumber numberWithInt:nDataType]];
+    if (sensorInstance == nil)
+    {
+        return;
+    }
+    
+    KBNotifyDataBase * notifyData = [[sensorInstance.notifyClass alloc]init];
+    [notifyData parseSensorDataResponse:self data:data];
+    if (sensorInstance.delegate != nil)
+    {
+        [sensorInstance.delegate onNotifyDataReceived:self type:nDataType data:notifyData];
+    }
+}
+
 -(void) configHandleReadDataRpt:(Byte)frameType dataType:(Byte)dataType data:(Byte*)data lenght:(int)dataLen
 {
     BOOL bRcvDataCmp = NO;
@@ -1175,6 +1376,23 @@
     }
 }
 
+-(BOOL)isSupportSensorDataNotification
+{
+    CBService *cbService = [KBUtility findServiceFromUUID:_peripheral cbuuID:KB_CFG_SERVICES_UUID];
+    if (!cbService)
+    {
+        return NO;
+    }
+    
+    CBCharacteristic *cbChar = [KBUtility findCharacteristicFromUUID:KB_IND_CHAR_UUID service:cbService];
+    if (!cbChar)
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
 -(void)handleJsonRptDataComplete
 {
     NSDictionary *dictRcvData = [NSJSONSerialization JSONObjectWithData:mReceiveData options:kNilOptions error:nil];
@@ -1215,9 +1433,14 @@
             [mCfgMgr initConfigFromJsonDicts:dictRcvData];
             
             //change connection state
-            NSLog(@"Connect and initial KBeacon(%@) success", _mac);
-            _state = KBStateConnected;
-            [self.delegate onConnStateChange:self state:KBStateConnected evt:KBEvtConnSuccess];
+            if ([self isSupportSensorDataNotification] && notifyData2ClassMap.count > 0)
+            {
+                [self startEnableNotification: KB_CFG_SERVICES_UUID charUUID:KB_IND_CHAR_UUID on:YES];
+            }else{
+                NSLog(@"Connect and initial KBeacon(%@) success", _mac);
+                _state = KBStateConnected;
+                [self.delegate onConnStateChange:self state:KBStateConnected evt:KBEvtConnSuccess];
+            }
         }
         else if (mActionStatus == ACTION_USR_READ_CFG)
         {
@@ -1235,7 +1458,6 @@
             [self cancelActionTimer];
             NSLog(@"Unknown message receive");
         }
-        
     }
 }
 
@@ -1384,13 +1606,27 @@
     }
     
     //start authentication
-    if (_state == KBStateConnecting)
+    if ([characteristic.UUID isEqual:KB_NTF_CHAR_UUID])
     {
-        [mAuthHandler authSendMd5Request:self.mac password:mPassword];
+        if (_state == KBStateConnecting)
+        {
+            [mAuthHandler authSendMd5Request:self.mac password:mPassword];
+        }
+    }
+    else if ([characteristic.UUID isEqual:KB_IND_CHAR_UUID])
+    {
+        if (_state == KBStateConnecting)
+        {
+            NSLog(@"Connect and initial KBeacon(%@) success", _mac);
+            _state = KBStateConnected;
+            [self.delegate onConnStateChange:self state:KBStateConnected evt:KBEvtConnSuccess];
+        }
+        else
+        {
+            [self handleBeaconEnableSubscribeComplete];
+        }
     }
 }
-
-
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
@@ -1399,20 +1635,25 @@
         [self closeBeacon:KBEvtConnException];
         return;
     }
-    
-    //read data
-    Byte byRcvNtfValue[MAX_BLE_MTU_SIZE] = {0};
-    int nRcvDataLen = (int)characteristic.value.length;
-    [characteristic.value getBytes:byRcvNtfValue length:nRcvDataLen];
-    
+
     //handle notify data
     if ([characteristic.UUID isEqual: KB_MAC_CHAR_UUID])
     {
+        //read data
+        Byte byRcvNtfValue[MAX_BLE_MTU_SIZE] = {0};
+        int nRcvDataLen = (int)characteristic.value.length;
+        [characteristic.value getBytes:byRcvNtfValue length:nRcvDataLen];
+        
         //handle read mac address
         [self systemHandleResponse:characteristic.UUID data:byRcvNtfValue lenght:nRcvDataLen];
     }
     else if ([characteristic.UUID isEqual: KB_NTF_CHAR_UUID])
     {
+        //read data
+        Byte byRcvNtfValue[MAX_BLE_MTU_SIZE] = {0};
+        int nRcvDataLen = (int)characteristic.value.length;
+        [characteristic.value getBytes:byRcvNtfValue length:nRcvDataLen];
+        
         //handle notify data
         Byte byDataType = (byRcvNtfValue[0] >> 4) & 0xF;
         Byte byFrameType = (byRcvNtfValue[0] & 0xF);
@@ -1429,6 +1670,11 @@
         {
             [self configHandleReadDataRpt:byFrameType dataType:byDataType data:&byRcvNtfValue[1] lenght:nRcvDataLen-1];
         }
+    }
+    else if ([characteristic.UUID isEqual: KB_IND_CHAR_UUID])
+    {
+        //handle notify data
+        [self handleBeaconIndData:characteristic.value];
     }
 }
 

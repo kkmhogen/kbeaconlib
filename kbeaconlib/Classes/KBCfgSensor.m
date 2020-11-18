@@ -35,28 +35,60 @@
 
 -(int) updateConfig:(NSDictionary*)dicts
 {
-    if ([dicts objectForKey:JSON_FIELD_SENSOR_TYPE] != nil)
+    int nUpdateConfigNum = 0;
+    
+    NSNumber* tmpNumber = [dicts objectForKey:JSON_FIELD_SENSOR_TYPE];
+    if (tmpNumber != nil)
     {
-        _sensorType = [dicts objectForKey:JSON_FIELD_SENSOR_TYPE];
-        return 1;
+        _sensorType = tmpNumber;
+        nUpdateConfigNum++;
     }
     
-    return 0;
+    tmpNumber = [dicts objectForKey:JSON_SENSOR_TYPE_HT_MEASURE_INTERVAL];
+    if (tmpNumber != nil)
+    {
+        _sensorHtMeasureInterval = tmpNumber;
+       nUpdateConfigNum++;
+    }
+
+    tmpNumber = [dicts objectForKey:JSON_SENSOR_TYPE_HT_TEMP_CHANGE_THD];
+    if (tmpNumber != nil)
+    {
+       _sensorHtTempSaveThreshold = tmpNumber;
+       nUpdateConfigNum++;
+    }
+
+    tmpNumber = [dicts objectForKey:JSON_SENSOR_TYPE_HT_HUMIDITY_CHANGE_THD];
+    if (tmpNumber != nil)
+    {
+       _sensorHtHumiditySaveThreshold = tmpNumber;
+       nUpdateConfigNum++;
+    }
+
+    return nUpdateConfigNum;
 }
 
 +(NSString*)getSensorTypeString:(NSNumber*) nSensorType
 {
-    if ([nSensorType intValue] == 1)
+    NSString* strTypeDesc = @"";
+    
+    if (([nSensorType intValue] & KBSensorTypeAcc) > 0)
     {
-        return SENSOR_TYPE_ACC_POSITION;
+        strTypeDesc = [NSString stringWithFormat:@"%@%@|", strTypeDesc, SENSOR_TYPE_ACC_POSITION];
     }
-    else if ([nSensorType intValue] == 0)
+    
+    if (([nSensorType intValue] & KBSensorTypeHumidity) > 0)
+    {
+        strTypeDesc = [NSString stringWithFormat:@"%@%@|", strTypeDesc, ENSOR_TYPE_HUMIDITY_2_TEMP];
+    }
+    
+    if ([nSensorType intValue] == 0)
     {
         return @"none";
     }
     else
     {
-        return @"unknown";
+        return strTypeDesc;
     }
 }
 
@@ -68,6 +100,21 @@
     if (_sensorType != nil)
     {
         [configDicts setObject:_sensorType forKey:JSON_FIELD_SENSOR_TYPE];
+    }
+    
+    if (_sensorHtMeasureInterval != nil)
+    {
+        [configDicts setObject:_sensorHtMeasureInterval forKey:JSON_SENSOR_TYPE_HT_MEASURE_INTERVAL];
+    }
+    
+    if (_sensorHtTempSaveThreshold != nil)
+    {
+        [configDicts setObject:_sensorHtTempSaveThreshold forKey:JSON_SENSOR_TYPE_HT_TEMP_CHANGE_THD];
+    }
+    
+    if (_sensorHtHumiditySaveThreshold != nil)
+    {
+        [configDicts setObject:_sensorHtHumiditySaveThreshold forKey:JSON_SENSOR_TYPE_HT_HUMIDITY_CHANGE_THD];
     }
     
     return configDicts;

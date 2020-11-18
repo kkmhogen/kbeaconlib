@@ -145,7 +145,7 @@ static NSDictionary* kbAdvPacketTypeObjects;
     {
         Byte* pTempSrvData = (Byte*)[pExtService bytes];
         int nBattPercent = pTempSrvData[0];
-        if (nBattPercent > 0)
+        if (nBattPercent > 100)
         {
             nBattPercent = 100;
         }
