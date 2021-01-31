@@ -17,6 +17,10 @@
 		08130FB3255BDF12D367506551585E17 /* KBProximityNotifyData.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCC9471C0CA803342201BB7322FCD72 /* KBProximityNotifyData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08F1902818FCC75C4C165632EC76A6B7 /* kbeaconlib-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A7346F2FE0EE4D5B2272EAB0799749 /* kbeaconlib-dummy.m */; };
 		0B4DEA2E9F0236259077E94D73C448C1 /* ManifestFirmwareInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07521E872B4BB1FE0B1296B5824DC330 /* ManifestFirmwareInfo.swift */; };
+		0C12095925C5505E00426915 /* KBNotifyMotionEvtData.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C12095725C5505E00426915 /* KBNotifyMotionEvtData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C12095A25C5505E00426915 /* KBNotifyMotionEvtData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C12095825C5505E00426915 /* KBNotifyMotionEvtData.m */; };
+		0C12096325C5522F00426915 /* KBNotifyButtonEvtData.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C12096125C5522F00426915 /* KBNotifyButtonEvtData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C12096425C5522F00426915 /* KBNotifyButtonEvtData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C12096225C5522F00426915 /* KBNotifyButtonEvtData.m */; };
 		0CB8F0F7AD54243A1751015A1AAB48D6 /* SecureDFUExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4014AD8836E8690680157EB16A02D0CD /* SecureDFUExecutor.swift */; };
 		0E8D35AD86834D625F6666B5644710F3 /* KBCfgHumidityTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B149855B0BB8F040A64C82C2B11784 /* KBCfgHumidityTrigger.m */; };
 		100FA2D5FC25D3E7F60A2D3CA81511D6 /* LoggerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F7930CEF2ADE86CF1EF9FE6C530E /* LoggerDelegate.swift */; };
@@ -276,13 +280,17 @@
 		090DABEB14CE6F6ED114D74A085228BA /* NSBundle+MJRefresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+MJRefresh.m"; path = "MJRefresh/NSBundle+MJRefresh.m"; sourceTree = "<group>"; };
 		09F832D078A5998C9AD8BFEF525FEE4C /* KBAdvPacketEddyTLM.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBAdvPacketEddyTLM.m; path = kbeaconlib/Classes/KBAdvPacketEddyTLM.m; sourceTree = "<group>"; };
 		0A7394EF1073998AF77B7525CFB37E17 /* UIScrollView+MJExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+MJExtension.m"; path = "MJRefresh/UIScrollView+MJExtension.m"; sourceTree = "<group>"; };
+		0C12095725C5505E00426915 /* KBNotifyMotionEvtData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KBNotifyMotionEvtData.h; path = kbeaconlib/Classes/KBNotifyMotionEvtData.h; sourceTree = "<group>"; };
+		0C12095825C5505E00426915 /* KBNotifyMotionEvtData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KBNotifyMotionEvtData.m; path = kbeaconlib/Classes/KBNotifyMotionEvtData.m; sourceTree = "<group>"; };
+		0C12096125C5522F00426915 /* KBNotifyButtonEvtData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KBNotifyButtonEvtData.h; path = kbeaconlib/Classes/KBNotifyButtonEvtData.h; sourceTree = "<group>"; };
+		0C12096225C5522F00426915 /* KBNotifyButtonEvtData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KBNotifyButtonEvtData.m; path = kbeaconlib/Classes/KBNotifyButtonEvtData.m; sourceTree = "<group>"; };
 		0CF3A6B53B7A32FB1EFF9B78ECF2B55F /* KBHumidityRecord.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBHumidityRecord.m; path = kbeaconlib/Classes/KBHumidityRecord.m; sourceTree = "<group>"; };
 		10AC82F21516A02DC4FF2F981FC5D0BB /* KBNotifyData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBNotifyData.m; path = kbeaconlib/Classes/KBNotifyData.m; sourceTree = "<group>"; };
 		10D492D1F8218CADAC66B1EE82897C9F /* iOSDFULibrary-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iOSDFULibrary-umbrella.h"; sourceTree = "<group>"; };
 		13AC44CD3C5C59EE9A9F5657E86DA74E /* KBHumidityNotifyData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KBHumidityNotifyData.h; path = kbeaconlib/Classes/KBHumidityNotifyData.h; sourceTree = "<group>"; };
 		13B430445A5B8E995EA55F92AFCA114B /* Pods-kbeaconlib_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-kbeaconlib_Example.modulemap"; sourceTree = "<group>"; };
 		155BBE203491E7D1E21E5E9C34DEDA22 /* KBCfgCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KBCfgCommon.h; path = kbeaconlib/Classes/KBCfgCommon.h; sourceTree = "<group>"; };
-		16CB71F8044C57779ED4CC0DD63A1EA1 /* kbeaconlib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = kbeaconlib.framework; path = kbeaconlib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		16CB71F8044C57779ED4CC0DD63A1EA1 /* kbeaconlib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = kbeaconlib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17179DB5EF5A0E0C37501D6A32D66A0C /* KBConnPara.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KBConnPara.h; path = kbeaconlib/Classes/KBConnPara.h; sourceTree = "<group>"; };
 		17A7346F2FE0EE4D5B2272EAB0799749 /* kbeaconlib-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "kbeaconlib-dummy.m"; sourceTree = "<group>"; };
 		183CACFE93454A3C4FD76DC3175BC83C /* kbeaconlib-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "kbeaconlib-prefix.pch"; sourceTree = "<group>"; };
@@ -291,14 +299,14 @@
 		1D1B54000951E7A06026607F43AA50CC /* DFUStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStream.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStream.swift; sourceTree = "<group>"; };
 		1E472B2A3CE9CD64631EA7AB58C9373D /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoFooter.m; path = MJRefresh/Base/MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		1E93D18B168A343326890676800B87B7 /* DFUPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUPeripheral.swift; sourceTree = "<group>"; };
-		1EF2C35B9EFE38906028C2BC65923354 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		1EF2C35B9EFE38906028C2BC65923354 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2010B8ACD2B4E65071453E1093B74BBC /* MJRefreshAutoGifFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoGifFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoGifFooter.h; sourceTree = "<group>"; };
 		20C45BA41958063B8549C1A8BEBB9B59 /* MJRefreshConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshConfig.h; path = MJRefresh/MJRefreshConfig.h; sourceTree = "<group>"; };
 		20FD7E10360C04A315AB70959790A732 /* DFUServiceInitiator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceInitiator.swift; path = iOSDFULibrary/Classes/Implementation/DFUServiceInitiator.swift; sourceTree = "<group>"; };
 		21442103464D5228AC51112B5635225C /* ZIPFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZIPFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		21B1375088A0310C7AE2BE4C8188D12F /* iOSDFULibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = iOSDFULibrary.framework; path = iOSDFULibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21B1375088A0310C7AE2BE4C8188D12F /* iOSDFULibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iOSDFULibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24A94A313D3727D05B13116853580501 /* DFUPacket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPacket.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Characteristics/DFUPacket.swift; sourceTree = "<group>"; };
-		24D7F854EB980B76BDA818F397DB76FD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		24D7F854EB980B76BDA818F397DB76FD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		260E4B7197A0228BA95A35E0F7496A1B /* UIView+MJExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+MJExtension.m"; path = "MJRefresh/UIView+MJExtension.m"; sourceTree = "<group>"; };
 		264D771772E0BA5AA336D0412E066012 /* MJRefreshStateTrailer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshStateTrailer.m; path = MJRefresh/Custom/Trailer/MJRefreshStateTrailer.m; sourceTree = "<group>"; };
 		26D4E0820EAE233250364A54E88E9D16 /* MJRefreshStateTrailer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshStateTrailer.h; path = MJRefresh/Custom/Trailer/MJRefreshStateTrailer.h; sourceTree = "<group>"; };
@@ -328,7 +336,7 @@
 		44176E4DA6E8B061F6AE7815E953DA73 /* MJRefreshFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshFooter.m; path = MJRefresh/Base/MJRefreshFooter.m; sourceTree = "<group>"; };
 		458192B2CB82AF773F1A9D80D08AFBAB /* KBCfgSleepTime.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBCfgSleepTime.m; path = kbeaconlib/Classes/KBCfgSleepTime.m; sourceTree = "<group>"; };
 		46FCD1F8556E5084ACA3F4398AE54ACD /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFHTTPSessionManager.h; path = AFNetworking/AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		48A4A6EDC08C8AC933D0DCD507E9D173 /* ZIPFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ZIPFoundation.framework; path = ZIPFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		48A4A6EDC08C8AC933D0DCD507E9D173 /* ZIPFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZIPFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49393C50149C416C21100E3FAAA984FA /* AFNetworking.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AFNetworking.modulemap; sourceTree = "<group>"; };
 		4B90CB69AE4C8761185571DF4836AEC8 /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = iOSDFULibrary/Classes/Utilities/Data.swift; sourceTree = "<group>"; };
 		4D23D1A07B5045BB18BFA948BEA757B8 /* DFUStreamHex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStreamHex.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStreamHex.swift; sourceTree = "<group>"; };
@@ -371,7 +379,7 @@
 		70B31F6419497133FA2D7958E4D564B1 /* MJRefreshBackGifFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackGifFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackGifFooter.m; sourceTree = "<group>"; };
 		726693C69A1DA870301633E1A0343144 /* UIView+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+MJExtension.h"; path = "MJRefresh/UIView+MJExtension.h"; sourceTree = "<group>"; };
 		726F73250837CF6D7F67F3456AD8E41A /* kbeaconlib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = kbeaconlib.release.xcconfig; sourceTree = "<group>"; };
-		734E0D782C4F758566684B9B9EB936F2 /* Pods_kbeaconlib_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_kbeaconlib_Example.framework; path = "Pods-kbeaconlib_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		734E0D782C4F758566684B9B9EB936F2 /* Pods_kbeaconlib_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kbeaconlib_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		753237DD50F1BA4CC0C584BA9898075E /* KBSensorDataMsgBase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBSensorDataMsgBase.m; path = kbeaconlib/Classes/KBSensorDataMsgBase.m; sourceTree = "<group>"; };
 		7877E5B513115FF23FFAA0E19D5677BB /* KBException.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBException.m; path = kbeaconlib/Classes/KBException.m; sourceTree = "<group>"; };
 		7A8A47D53C3BC52E9C88FB730C09DCAC /* MJRefreshBackNormalFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshBackNormalFooter.h; path = MJRefresh/Custom/Footer/Back/MJRefreshBackNormalFooter.h; sourceTree = "<group>"; };
@@ -421,7 +429,7 @@
 		9C1939406D4FC47F583C890BF67AA2ED /* iOSDFULibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iOSDFULibrary.debug.xcconfig; sourceTree = "<group>"; };
 		9CAFB98949BAB594B04D45A9EB0D2717 /* Pods-kbeaconlib_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-kbeaconlib_Example-frameworks.sh"; sourceTree = "<group>"; };
 		9D636B1D52F10E8A84E5023958DD67C1 /* MJRefreshAutoNormalFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoNormalFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoNormalFooter.h; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DF52FC7BDF82634FBE7559A56BB6186 /* KBAdvPacketEddyTLM.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KBAdvPacketEddyTLM.h; path = kbeaconlib/Classes/KBAdvPacketEddyTLM.h; sourceTree = "<group>"; };
 		9FD4FD76F67EF5729B46A6C2D3D724D3 /* iOSDFULibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iOSDFULibrary.release.xcconfig; sourceTree = "<group>"; };
 		A03BEA43A9F31793832A0BE557583BA2 /* KBAdvPacketEddyUID.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBAdvPacketEddyUID.m; path = kbeaconlib/Classes/KBAdvPacketEddyUID.m; sourceTree = "<group>"; };
@@ -434,7 +442,7 @@
 		A36A5BCA3DED1A80085F030A1702240A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A42FB0790C8AB9954FD5BEBCAFF4348F /* ZIPFoundation-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZIPFoundation-umbrella.h"; sourceTree = "<group>"; };
 		A4C3ACC138F9D8E7ADC474A97E8CC2E1 /* NSBundle+MJRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+MJRefresh.h"; path = "MJRefresh/NSBundle+MJRefresh.h"; sourceTree = "<group>"; };
-		A4FA15D44DF6BAC7550EDEED10862AA3 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AFNetworking.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4FA15D44DF6BAC7550EDEED10862AA3 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A622D9A7A6BDDBDBFF4A9F480A323B57 /* KBAdvPacketIBeacon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBAdvPacketIBeacon.m; path = kbeaconlib/Classes/KBAdvPacketIBeacon.m; sourceTree = "<group>"; };
 		A96C10D2F0EFC71A02F95FB880C26F8F /* KBCfgEddyURL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBCfgEddyURL.m; path = kbeaconlib/Classes/KBCfgEddyURL.m; sourceTree = "<group>"; };
 		AA8238074B3A262C854641FAB04E9A45 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLResponseSerialization.h; path = AFNetworking/AFURLResponseSerialization.h; sourceTree = "<group>"; };
@@ -483,7 +491,7 @@
 		DF0A721CDDE20897AFBC2F39267779CE /* KBCfgEddyUID.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KBCfgEddyUID.m; path = kbeaconlib/Classes/KBCfgEddyUID.m; sourceTree = "<group>"; };
 		E0619191E226D83CCA65A617BC62CF5B /* Data+Compression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Data+Compression.swift"; path = "Sources/ZIPFoundation/Data+Compression.swift"; sourceTree = "<group>"; };
 		E42793E573C4A304573D0F1EEEC3E225 /* Manifest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manifest.swift; path = iOSDFULibrary/Classes/Utilities/DFUPackage/Manifest/Manifest.swift; sourceTree = "<group>"; };
-		E49D6D248DD1CEE584E6776B9164A1B2 /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MJRefresh.framework; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E49D6D248DD1CEE584E6776B9164A1B2 /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4DD3CD2C36AD0336DFC20B61BE89B88 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFSecurityPolicy.h; path = AFNetworking/AFSecurityPolicy.h; sourceTree = "<group>"; };
 		E507B4BC53DC9429F41F71D8A66FB2AB /* Data+Serialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Data+Serialization.swift"; path = "Sources/ZIPFoundation/Data+Serialization.swift"; sourceTree = "<group>"; };
 		E6E0A7C432692965028948C8B93FF568 /* KBCfgTrigger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KBCfgTrigger.h; path = kbeaconlib/Classes/KBCfgTrigger.h; sourceTree = "<group>"; };
@@ -492,7 +500,7 @@
 		EB3054CA52D3F374ABC12146A87A8547 /* ZIPFoundation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZIPFoundation-prefix.pch"; sourceTree = "<group>"; };
 		EC1D7FCFDD9E80FCE1B9C98C5AB76DB6 /* MJRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefresh.h; path = MJRefresh/MJRefresh.h; sourceTree = "<group>"; };
 		ED46A44373365C7B07B7045D013BA412 /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+MJExtension.h"; path = "MJRefresh/UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
-		EDC0DE5DBDDC2307F7C186CC63638F54 /* kbeaconlib.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = kbeaconlib.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		EDC0DE5DBDDC2307F7C186CC63638F54 /* kbeaconlib.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = kbeaconlib.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EEC3EB4DDEC98190353D854B49182B00 /* SecureDFUControlPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUControlPoint.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Characteristics/SecureDFUControlPoint.swift; sourceTree = "<group>"; };
 		EECE9DC4896EAD8B37D8287EA1AC46CF /* ZIPFoundation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZIPFoundation.release.xcconfig; sourceTree = "<group>"; };
 		F26E334829991985E1D51D41B90F0B5A /* KBProximityRecord.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KBProximityRecord.h; path = kbeaconlib/Classes/KBProximityRecord.h; sourceTree = "<group>"; };
@@ -691,6 +699,10 @@
 				5B67CD445DDFCA8B7A549D4941A3CE76 /* KBUtility.h */,
 				FDF32CEDB5F9ECBDC32E72CABD2DB6CB /* KBUtility.m */,
 				64F30A424BF8A94AE45EEC473FFE200C /* UTCTime.h */,
+				0C12095725C5505E00426915 /* KBNotifyMotionEvtData.h */,
+				0C12095825C5505E00426915 /* KBNotifyMotionEvtData.m */,
+				0C12096125C5522F00426915 /* KBNotifyButtonEvtData.h */,
+				0C12096225C5522F00426915 /* KBNotifyButtonEvtData.m */,
 				83CAE612CC900F6F06271AA10E4397D0 /* UTCTime.m */,
 				8CA3DA8E720107FA8100EF7378FD2600 /* Pod */,
 				52F85456C91663DDB84E94514776AF69 /* Support Files */,
@@ -770,7 +782,6 @@
 				573922C039C41D5F403CF77EB7B6D49F /* FileManager+ZIP.swift */,
 				A8E759F2D638D17693B6192949F25B2A /* Support Files */,
 			);
-			name = ZIPFoundation;
 			path = ZIPFoundation;
 			sourceTree = "<group>";
 		};
@@ -855,7 +866,6 @@
 				2F0CB726D32E5E10239793A787F48883 /* Serialization */,
 				D6CED812A659DC8793984A4BD123140C /* Support Files */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -924,7 +934,6 @@
 				36C79326FD3AA12A79FAAFFB8E9AA0C6 /* ZipArchive.swift */,
 				0628C25FADC6EA5A4DF3E0F1457212FA /* Support Files */,
 			);
-			name = iOSDFULibrary;
 			path = iOSDFULibrary;
 			sourceTree = "<group>";
 		};
@@ -998,7 +1007,6 @@
 				2094BD81283E8997A7DA4EC858048AA3 /* Resources */,
 				A4E98F9083705FFEC149784DEAE8CF21 /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -1025,6 +1033,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C12095925C5505E00426915 /* KBNotifyMotionEvtData.h in Headers */,
+				0C12096325C5522F00426915 /* KBNotifyButtonEvtData.h in Headers */,
 				2BCB980893EA865595F026DCE68DAB75 /* KBAdvPacketBase.h in Headers */,
 				20CB225297732CE48D336880F77DE74C /* KBAdvPacketEddyTLM.h in Headers */,
 				7EB7CD54323A914ABB0D61787CE57157 /* KBAdvPacketEddyUID.h in Headers */,
@@ -1462,11 +1472,13 @@
 				024C6CB2A2F72420EB11B6A37CA7FE16 /* KBCfgEddyUID.m in Sources */,
 				3FA78447CC361A2C0B8BD9B38A2EAF96 /* KBCfgEddyURL.m in Sources */,
 				2DEECDD8C7A4A9066C4C09C68CF0E276 /* KBCfgHandler.m in Sources */,
+				0C12096425C5522F00426915 /* KBNotifyButtonEvtData.m in Sources */,
 				0E8D35AD86834D625F6666B5644710F3 /* KBCfgHumidityTrigger.m in Sources */,
 				90DE8852D5E13771C8632F695527A985 /* KBCfgIBeacon.m in Sources */,
 				16E11D7E871F0E4D7F9076CB62796BBC /* KBCfgNearbyTrigger.m in Sources */,
 				9080836B1562C261018C9B236CF7B8E5 /* KBCfgSensor.m in Sources */,
 				9A5BAEABDCE2F548C463763F4E082707 /* KBCfgSleepTime.m in Sources */,
+				0C12095A25C5505E00426915 /* KBNotifyMotionEvtData.m in Sources */,
 				30FF8F2F6FC9475C0EA7C1CBD37D5B2F /* KBCfgTrigger.m in Sources */,
 				5EC852EE92FD4D0EF454CABF60402A75 /* KBConnPara.m in Sources */,
 				53C006885C425292B9D29842D921313A /* KBeacon.m in Sources */,
@@ -1742,6 +1754,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.0.2;
 				MODULEMAP_FILE = "Target Support Files/kbeaconlib/kbeaconlib.modulemap";
 				PRODUCT_MODULE_NAME = kbeaconlib;
 				PRODUCT_NAME = kbeaconlib;
@@ -1840,8 +1853,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -2027,6 +2039,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.0.2;
 				MODULEMAP_FILE = "Target Support Files/kbeaconlib/kbeaconlib.modulemap";
 				PRODUCT_MODULE_NAME = kbeaconlib;
 				PRODUCT_NAME = kbeaconlib;

@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'kbeaconlib'
-  s.version          = '1.0.1'
-  s.summary          = 'Support humidity sensor'
+  s.version          = '1.0.2'
+  s.summary          = 'Support report button and motion event to connected IOS/Android app'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
